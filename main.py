@@ -2,21 +2,11 @@ import discord, asyncio, pyowm, requests, ast
 import random as r
 from difflib import SequenceMatcher
 from time import strftime
-ftok=open('token.txt','r')
-token=ftok.read()
-ftok.close()
-foid=open('ownerid.txt','r')
-OWNERID=foid.read()
-foid.close()
-fbid=open('botid.txt','r')
-BOTID=fbid.read()
-fbid.close()
-fwok=open('weather_token.txt','r')
-w_token=fwok.read()
-fwok.close()
-fsid=open('serverid.txt','r')
-SERVERID=fsid.read()
-fsid.close()
+token = ''
+w_token = ''
+OWNERID = ''
+BOTID = ''
+SERVERID = ''
 client = discord.Client()
 rdict=open('the_dict.txt','r')
 sdic=rdict.read()
@@ -109,7 +99,7 @@ async def on_message(message):
             print(the_dict)
             
         elif message.content.startswith('/weather'):
-            owm=pyowm.OWM('w_token')
+            owm=pyowm.OWM(w_token)
             observation = owm.weather_at_place('London,uk')
             w=observation.get_weather()
             #print(w.get_temperature('celsius'))
